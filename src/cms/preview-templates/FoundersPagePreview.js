@@ -5,7 +5,7 @@ import { FoundersPageTemplate } from "../../templates/founders-page";
 const FoundersPagePreview = ({ entry, widgetFor }) => (
   <FoundersPageTemplate 
    title={entry.getIn(['data', 'title'])}
-  content={widgetFor('body')}
+  // content={widgetFor('body')}
     />
 );
 

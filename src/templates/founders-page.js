@@ -1,40 +1,73 @@
 import React from "react";
-import PropTypes from 'prop-types'
-import Layout from "../components/Layout";
+import PropTypes from "prop-types";
+// import Layout from "../components/Layout";
+import styled from 'styled-components'
 
-export const FoundersPageTemplate = ({ title, content, contentComponent }) => {
-  // const PageContent = contentComponent || Content
+const Wrapper = styled.div`
+  display: grid; 
+  /* height: 100vh; */
+  grid-template-columns: 1fr 1fr 1fr; 
+  grid-template-rows: 1fr 1fr 1fr; 
+  /* padding: 10%;  */
+`
+const One = styled.div`
+  background-color: lavender;
+  /* grid-column: 1/2; 
+  grid-row: 1/2;  */
+`
+const Two = styled.div`
+ background-color: lawngreen;
+`
+const Three = styled.div`
+  background-color: lightcoral;
+  /* grid-column: 1/2;  */
+`
+const Header = styled.h1` 
+`
 
+
+export const FoundersPageTemplate = ({ title }) => {
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              {/* <PageContent className="content" content={content} /> */}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+    <Wrapper>
+      <One>
+      <Header>
+      {title}
+      </Header>
+      </One>
+      <Two>
+        <h1>Two</h1>
+      </Two>
+      <Three>
+        <h1>Three</h1>
+      </Three>
+    </Wrapper>
+  );
+};
 
 FoundersPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
-  contentComponent: PropTypes.func,
-}
+  contentComponent: PropTypes.func
+};
 
-const FounderPage = () => {
+const FounderPage = ({ data }) => {
+  const { markdownRemark: founders } = data
   return (
-    <Layout>
-      <h1>This is the founders page</h1>
-    </Layout>
+    <div>
+      <FoundersPageTemplate title={founders.frontmatter.title} />
+    </div>
   );
 };
 
 export default FounderPage;
+
+export const foundersPageQuery = graphql`
+  query FounderPage($id: String!) {
+    markdownRemark(id: { eq: $id }) {
+      html
+      frontmatter {
+        title
+      }
+    }
+  }
+` 

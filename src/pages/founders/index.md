@@ -1,7 +1,7 @@
 ---
 templateKey: 'founders-page'
 path: /founders
-title: This is founders page test
+title: Founders
 ---
 
 ### Shade-grown coffee
