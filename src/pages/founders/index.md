@@ -1,6 +1,6 @@
 ---
 templateKey: founders-page
-title: Founderss
+title: Founders
 image: /img/blog-index.jpg
 ---
 
