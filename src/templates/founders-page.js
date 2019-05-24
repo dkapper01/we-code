@@ -1,40 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
 // import Layout from "../components/Layout";
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: grid; 
+  display: grid;
   /* height: 100vh; */
-  grid-template-columns: 1fr 1fr 1fr; 
-  grid-template-rows: 1fr 1fr 1fr; 
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   /* padding: 10%;  */
-`
+`;
 const One = styled.div`
   background-color: lavender;
   /* grid-column: 1/2; 
   grid-row: 1/2;  */
-`
+`;
 const Two = styled.div`
- background-color: lawngreen;
-`
+  background-color: lawngreen;
+`;
 const Three = styled.div`
   background-color: lightcoral;
   /* grid-column: 1/2;  */
-`
-const Header = styled.h1` 
-`
+`;
+const Header = styled.h1``;
 
-
-export const FoundersPageTemplate = ({ title }) => {
+export const FoundersPageTemplate = ({ title, image }) => {
   return (
     <Wrapper>
       <One>
-      <Header>
-      {title}
-      </Header>
+        <Header>
+          {title}
+        </Header>
       </One>
       <Two>
+        <img src={image.childImageSharp.fluid.src} />
         <h1>Two</h1>
       </Two>
       <Three>
@@ -46,15 +45,18 @@ export const FoundersPageTemplate = ({ title }) => {
 
 FoundersPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  contentComponent: PropTypes.func
+  childImageSharp: PropTypes.object,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
 };
 
 const FounderPage = ({ data }) => {
-  const { markdownRemark: founders } = data
+  const { markdownRemark: founders } = data;
   return (
     <div>
-      <FoundersPageTemplate title={founders.frontmatter.title} />
+      <FoundersPageTemplate
+        title={founders.frontmatter.title}
+        image={founders.frontmatter.image}
+      />
     </div>
   );
 };
@@ -67,7 +69,14 @@ export const foundersPageQuery = graphql`
       html
       frontmatter {
         title
+        image {
+          childImageSharp {
+            fluid {
+              src
+            }
+          }
+        }
       }
     }
   }
-` 
+`;
