@@ -1,6 +1,6 @@
 ---
-templateKey: "founders-page"
-path: /founders
-title: Founders
+templateKey: founders-page
+title: Founderss
 image: /img/blog-index.jpg
 ---
+
