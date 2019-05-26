@@ -73,10 +73,10 @@ const FounderPage = ({ data }) => {
 FounderPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object
-    })
-  })
-};
+      frontmatter: PropTypes.object,
+    }),
+  }),
+}
 
 export default FounderPage;
 
