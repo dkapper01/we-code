@@ -5,7 +5,7 @@ image: /img/blog-index.jpg
 intro:
   blurbs:
     - image: /img/pic.jpg
-      text: test test test
+      text: Intro blurbs one
   description: 'This is the description of the intro '
   heading: Heading goes here
 ---
