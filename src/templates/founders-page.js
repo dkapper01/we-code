@@ -21,7 +21,8 @@ const Two = styled.div`
 `;
 const Three = styled.div`
   background-color: lightcoral;
-  /* grid-column: 1/2;  */
+  grid-column: 1/4; 
+  grid-row: 2/4;
 `;
 const Header = styled.h1``;
 
@@ -87,14 +88,18 @@ export const foundersPageQuery = graphql`
       frontmatter {
         title
         intro {
+          blurbs {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 240, quality: 64) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            text
+          }
           heading
           description
-          blurbs {
-            text
-            image {
-              id
-            }
-          }
         }
         image {
           childImageSharp {
