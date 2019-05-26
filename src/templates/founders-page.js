@@ -33,11 +33,11 @@ export const FoundersPageTemplate = ({ title, image, intro }) => {
         <Header>{title}</Header>
       </One>
       <Two>
-        <img
+        {/* <img
           src={`${
             !!image.childImageSharp ? image.childImageSharp.fluid.src : image
           }`}
-        />
+        /> */}
         <h1>Two</h1>
       </Two>
       <Three>
@@ -64,7 +64,7 @@ const FounderPage = ({ data }) => {
     <div>
       <FoundersPageTemplate
         title={founders.frontmatter.title}
-        image={founders.frontmatter.image}
+        // image={founders.frontmatter.image}
         intro={founders.frontmatter.intro}
       />
     </div>
@@ -91,7 +91,7 @@ export const foundersPageQuery = graphql`
           blurbs {
             image {
               childImageSharp {
-                fluid(maxWidth: 240, quality: 64) {
+                fluid(maxWidth: 210, quality: 64) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -103,7 +103,7 @@ export const foundersPageQuery = graphql`
         }
         image {
           childImageSharp {
-            fluid(maxWidth: 240, quality: 64) {
+            fluid(maxWidth: 210, quality: 64) {
               ...GatsbyImageSharpFluid
             }
           }
