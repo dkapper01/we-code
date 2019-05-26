@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 // import Layout from "../components/Layout";
 import styled from "styled-components";
+import Profiles from "../components/Profiles";
 
 const Wrapper = styled.div`
   display: grid;
@@ -24,20 +25,23 @@ const Three = styled.div`
 `;
 const Header = styled.h1``;
 
-export const FoundersPageTemplate = ({ title, image }) => {
+export const FoundersPageTemplate = ({ title, image, intro }) => {
   return (
     <Wrapper>
       <One>
-        <Header>
-          {title}
-        </Header>
+        <Header>{title}</Header>
       </One>
       <Two>
-        <img src={image.childImageSharp.fluid.src} />
+        <img
+          src={`${
+            !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+          }`}
+        />
         <h1>Two</h1>
       </Two>
       <Three>
         <h1>Three</h1>
+        <Profiles gridItems={intro.blurbs} />
       </Three>
     </Wrapper>
   );
@@ -45,8 +49,12 @@ export const FoundersPageTemplate = ({ title, image }) => {
 
 FoundersPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   childImageSharp: PropTypes.object,
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  intro: PropTypes.shape({
+    blurbs: PropTypes.array
+  })
 };
 
 const FounderPage = ({ data }) => {
@@ -56,9 +64,18 @@ const FounderPage = ({ data }) => {
       <FoundersPageTemplate
         title={founders.frontmatter.title}
         image={founders.frontmatter.image}
+        intro={founders.frontmatter.intro}
       />
     </div>
   );
+};
+
+FounderPage.propTypes = {
+  data: PropTypes.shape({
+    markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object
+    })
+  })
 };
 
 export default FounderPage;
@@ -69,10 +86,20 @@ export const foundersPageQuery = graphql`
       html
       frontmatter {
         title
+        intro {
+          heading
+          description
+          blurbs {
+            text
+            image {
+              id
+            }
+          }
+        }
         image {
           childImageSharp {
-            fluid {
-              src
+            fluid(maxWidth: 240, quality: 64) {
+              ...GatsbyImageSharpFluid
             }
           }
         }

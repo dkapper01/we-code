@@ -6,7 +6,6 @@ const FoundersPagePreview = ({ entry, widgetFor, getAsset }) => (
   <FoundersPageTemplate 
    title={entry.getIn(['data', 'title'])}
    image={getAsset(entry.getIn(['data', 'image']))}
-
   // content={widgetFor('body')}
     />
 );
