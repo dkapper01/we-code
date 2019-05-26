@@ -8,7 +8,7 @@ const ProfileGrid = ({ gridItems }) => (
       <div key={item.text}>
         <div
           style={{
-            width: "240px",
+            width: "210px",
             display: "inline-block"
           }}
         >

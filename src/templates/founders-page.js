@@ -6,23 +6,19 @@ import Profiles from "../components/Profiles";
 
 const Wrapper = styled.div`
   display: grid;
-  /* height: 100vh; */
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
-  /* padding: 10%;  */
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 `;
 const One = styled.div`
   background-color: lavender;
-  /* grid-column: 1/2; 
-  grid-row: 1/2;  */
+  grid-column: 1/5; 
+  grid-row: 1/2; 
 `;
-const Two = styled.div`
-  background-color: lawngreen;
-`;
+
 const Three = styled.div`
   background-color: lightcoral;
-  grid-column: 1/4; 
-  grid-row: 2/4;
+  grid-row: 2/2; 
+  grid-column: 1/5; 
 `;
 const Header = styled.h1``;
 
@@ -32,16 +28,7 @@ export const FoundersPageTemplate = ({ title, image, intro }) => {
       <One>
         <Header>{title}</Header>
       </One>
-      <Two>
-        {/* <img
-          src={`${
-            !!image.childImageSharp ? image.childImageSharp.fluid.src : image
-          }`}
-        /> */}
-        <h1>Two</h1>
-      </Two>
       <Three>
-        <h1>Three</h1>
         <Profiles gridItems={intro.blurbs} />
       </Three>
     </Wrapper>
