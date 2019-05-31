@@ -2,38 +2,26 @@ import React from "react";
 import PropTypes from "prop-types";
 // import Layout from "../components/Layout";
 import styled from "styled-components";
-import Profiles from "../components/Profiles";
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-`;
-const One = styled.div`
-  background-color: lavender;
-  grid-column: 1/5; 
-  grid-row: 1/2; 
-`;
-
-const Three = styled.div`
-  background-color: lightcoral;
-  grid-row: 2/2; 
-  grid-column: 1/5; 
-`;
-const Header = styled.h1``;
+import ProfileGrid from "../components/ProfileGrid";
 
 export const FoundersPageTemplate = ({ title, image, intro }) => {
   return (
     <Wrapper>
-      <One>
-        <Header>{title}</Header>
-      </One>
-      <Three>
-        <Profiles gridItems={intro.blurbs} />
-      </Three>
+      <ProfileGrid gridItems={intro.blurbs} />
     </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  width: 750px;
+  margin: 0 auto 0 auto;
+  height: auto;
+  border: 1px solid red;
+  box-sizing: border-box;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`;
 
 FoundersPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
@@ -61,10 +49,10 @@ const FounderPage = ({ data }) => {
 FounderPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
-      frontmatter: PropTypes.object,
-    }),
-  }),
-}
+      frontmatter: PropTypes.object
+    })
+  })
+};
 
 export default FounderPage;
 

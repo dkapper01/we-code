@@ -1,24 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
+import styled from "styled-components";
+import PreviewCompatibleImage from "./PreviewCompatibleImage";
 
 const ProfileGrid = ({ gridItems }) => (
-  <div>
+  <React.Fragment>
     {gridItems.map(item => (
-      <div key={item.text}>
+      <Wrapper key={item.text}>
         <div
           style={{
             width: "210px",
-            display: "inline-block"
+            display: "block"
           }}
         >
           <PreviewCompatibleImage imageInfo={item} />
         </div>
-        <p>{item.text}</p>
-      </div>
+        <p>
+          {item.text}
+        </p>
+      </Wrapper>
     ))}
-  </div>
+  </React.Fragment>
 );
+
+const Wrapper = styled.div`
+  width: 210px;
+  background: cadetblue;
+  align-items: center;
+  margin: 0;
+  /* display: flex; */
+  /* flex-wrap: wrap;  */
+`;
 
 ProfileGrid.propTypes = {
   gridItems: PropTypes.arrayOf(
